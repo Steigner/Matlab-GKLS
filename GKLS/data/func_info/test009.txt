@@ -1,0 +1,23 @@
+D-type function number 9
+of the class with the following parameters:
+    problem dimension      = 3;
+    number of local minima = 10;
+    global minimum value   = -1.000000;
+    radius of the g.m.attraction region = 0.333333;
+    distance from the paraboloid vertex to the global minimizer = 0.666667.
+
+Local minimizers:
+  f[1] = f( -0.820 -0.199  0.155) =   0.000;  rho[1] =   0.222.
+  f[2] = f( -0.341 -0.663  0.153) =  -1.000;  rho[2] =   0.333.
+  f[3] = f( -0.572  0.215 -0.963) =   0.369;  rho[3] =   0.331.
+  f[4] = f(  0.324 -0.418  0.859) =  -0.032;  rho[4] =   0.529.
+  f[5] = f(  0.386  0.510  0.597) =   0.716;  rho[5] =   0.328.
+  f[6] = f(  0.113 -0.147  0.247) =   0.587;  rho[6] =   0.154.
+  f[7] = f( -0.054  0.697  0.014) =  -0.188;  rho[7] =   0.418.
+  f[8] = f(  0.257  0.087  0.393) =   0.686;  rho[8] =   0.154.
+  f[9] = f( -0.062  0.162 -0.533) =   0.197;  rho[9] =   0.331.
+  f[10] = f( -0.800 -0.018 -0.256) =  -0.264;  rho[10] =   0.222.
+
+
+There is one global minimizer.
+The number of the global minimizer is: 2 
