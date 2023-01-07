@@ -18,7 +18,7 @@ cflags =  /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPR
 
 cxxflags =   /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I "$root" /I "$startdir" /I "$root\interface" /I "$matlabdir\extern\include" /I "." -DMODEL=generate_mex  
 
-ldflags =  /nologo /manifest   /DLL /LIBPATH:"$matlabdir\extern\lib\win64\microsoft" libmx.lib libmex.lib libmat.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  /out:"generate_mex.mexw64" libemlrt.lib libcovrt.lib libut.lib libmwmathutil.lib  /export:mexFunction /export:mexfilerequiredapiversion /export:emlrtMexFcnProperties /export:generate /export:generate_initialize /export:generate_terminate /export:generate_atexit
+ldflags =  /nologo /manifest   /DLL /LIBPATH:"$matlabdir\extern\lib\win64\microsoft" libmx.lib libmex.lib libmat.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  /out:"generate_mex.mexw64" libemlrt.lib libcovrt.lib libut.lib libmwmathutil.lib  /export:mexFunction /export:mexfilerequiredapiversion /export:emlrtMexFcnProperties /export:generate /export:generate_initialize /export:generate_terminate /export:generate_atexit /export:emxEnsureCapacity_real_T /export:emxFree_real_T /export:emxInit_real_T
 
 # Build Rules
 rule cc
@@ -42,10 +42,12 @@ build $builddir\rt_nonfinite.obj : cc $root\rt_nonfinite.c
 build $builddir\generate_initialize.obj : cc $root\generate_initialize.c
 build $builddir\generate_terminate.obj : cc $root\generate_terminate.c
 build $builddir\generate.obj : cc $root\generate.c
+build $builddir\rand.obj : cc $root\rand.c
 build $builddir\_coder_generate_api.obj : cc $root\interface\_coder_generate_api.c
 build $builddir\_coder_generate_mex.obj : cc $root\interface\_coder_generate_mex.c
+build $builddir\generate_emxutil.obj : cc $root\generate_emxutil.c
 build $builddir\_coder_generate_info.obj : cc $root\interface\_coder_generate_info.c
 build $builddir\c_mexapi_version.obj : cc $matlabdir\extern\version\c_mexapi_version.c
 
 # Link
-build $root\generate_mex.mexw64 : link $builddir\main.obj $builddir\generate_data.obj $builddir\rt_nonfinite.obj $builddir\generate_initialize.obj $builddir\generate_terminate.obj $builddir\generate.obj $builddir\_coder_generate_api.obj $builddir\_coder_generate_mex.obj $builddir\_coder_generate_info.obj $builddir\c_mexapi_version.obj 
+build $root\generate_mex.mexw64 : link $builddir\main.obj $builddir\generate_data.obj $builddir\rt_nonfinite.obj $builddir\generate_initialize.obj $builddir\generate_terminate.obj $builddir\generate.obj $builddir\rand.obj $builddir\_coder_generate_api.obj $builddir\_coder_generate_mex.obj $builddir\generate_emxutil.obj $builddir\_coder_generate_info.obj $builddir\c_mexapi_version.obj 

@@ -1,14 +1,15 @@
 %% generate mex from c code
 
-% codegen generate -args {1,2,3,4,5,6} main.c
+% codegen generate -args {1,2,3,4,5,6,7} main.c
 
 %% call generated function
 
 % dimensions
 dim = 3;
+num_points = 10;
 
 % number of minims
-num_min = 10;
+num_min = 15;
 
 % distanc / radius
 dist = 2/3; 
@@ -23,7 +24,7 @@ problems = 10;
 test_function = 1;
 
 % call mex generated function
-error_msg = generate_mex(dim,num_min,dist,radius,problems,test_function);
+error_msg = generate_mex(dim,num_min,dist,radius,problems,test_function,num_points);
 
 switch error_msg
     case 0

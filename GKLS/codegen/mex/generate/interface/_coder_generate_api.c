@@ -72,7 +72,7 @@ static const mxArray *emlrt_marshallOut(const real_T u)
   return y;
 }
 
-void generate_api(const mxArray *const prhs[6], const mxArray **plhs)
+void generate_api(const mxArray *const prhs[7], const mxArray **plhs)
 {
   emlrtStack st = {
       NULL, /* site */
@@ -82,6 +82,7 @@ void generate_api(const mxArray *const prhs[6], const mxArray **plhs)
   real_T dim;
   real_T global_dist;
   real_T global_radius;
+  real_T num;
   real_T num_min;
   real_T num_problems;
   real_T test_function;
@@ -93,9 +94,10 @@ void generate_api(const mxArray *const prhs[6], const mxArray **plhs)
   global_radius = emlrt_marshallIn(&st, emlrtAliasP(prhs[3]), "global_radius");
   num_problems = emlrt_marshallIn(&st, emlrtAliasP(prhs[4]), "num_problems");
   test_function = emlrt_marshallIn(&st, emlrtAliasP(prhs[5]), "test_function");
+  num = emlrt_marshallIn(&st, emlrtAliasP(prhs[6]), "num");
   /* Invoke the target function */
   dim = generate(&st, dim, num_min, global_dist, global_radius, num_problems,
-                 test_function);
+                 test_function, num);
   /* Marshall function outputs */
   *plhs = emlrt_marshallOut(dim);
 }

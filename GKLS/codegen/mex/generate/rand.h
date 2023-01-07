@@ -3,15 +3,16 @@
  * course requirements at degree granting institutions only.  Not for
  * government, commercial, or other organizational use.
  *
- * generate.h
+ * rand.h
  *
- * Code generation for function 'generate'
+ * Code generation for function 'rand'
  *
  */
 
 #pragma once
 
 /* Include files */
+#include "generate_types.h"
 #include "rtwtypes.h"
 #include "emlrt.h"
 #include "mex.h"
@@ -21,8 +22,7 @@
 #include <string.h>
 
 /* Function Declarations */
-real_T generate(const emlrtStack *sp, real_T dim, real_T num_min,
-                real_T global_dist, real_T global_radius, real_T num_problems,
-                real_T test_function, real_T num);
+void b_rand(const emlrtStack *sp, real_T varargin_1, real_T varargin_2,
+            emxArray_real_T *r);
 
-/* End of code generation (generate.h) */
+/* End of code generation (rand.h) */

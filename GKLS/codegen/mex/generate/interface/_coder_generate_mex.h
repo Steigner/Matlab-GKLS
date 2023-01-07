@@ -22,7 +22,7 @@
 
 /* Function Declarations */
 void generate_mexFunction(int32_T nlhs, mxArray *plhs[1], int32_T nrhs,
-                          const mxArray *prhs[6]);
+                          const mxArray *prhs[7]);
 
 MEXFUNCTION_LINKAGE void mexFunction(int32_T nlhs, mxArray *plhs[],
                                      int32_T nrhs, const mxArray *prhs[]);

@@ -37,6 +37,12 @@
   },
   {
     "directory": "C:\\Users\\mjuri\\Documents\\generator_tasks\\GKLS-master\\GKLS_pdf_C\\Software\\codegen\\mex\\generate",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"C:\\Users\\mjuri\\Documents\\generator_tasks\\GKLS-master\\GKLS_pdf_C\\Software\" /I \".\\interface\" /I \"C:\\Program Files\\MATLAB\\R2022a\\extern\\include\" /I \".\" -DMODEL=generate_mex   rand.c /Fobuild\\win64\\rand.obj",
+    "file": "rand.c",
+    "output": "build/win64/rand.obj"
+  },
+  {
+    "directory": "C:\\Users\\mjuri\\Documents\\generator_tasks\\GKLS-master\\GKLS_pdf_C\\Software\\codegen\\mex\\generate",
     "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"C:\\Users\\mjuri\\Documents\\generator_tasks\\GKLS-master\\GKLS_pdf_C\\Software\" /I \".\\interface\" /I \"C:\\Program Files\\MATLAB\\R2022a\\extern\\include\" /I \".\" -DMODEL=generate_mex   interface\\_coder_generate_api.c /Fobuild\\win64\\_coder_generate_api.obj",
     "file": "interface/_coder_generate_api.c",
     "output": "build/win64/_coder_generate_api.obj"
@@ -46,6 +52,12 @@
     "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"C:\\Users\\mjuri\\Documents\\generator_tasks\\GKLS-master\\GKLS_pdf_C\\Software\" /I \".\\interface\" /I \"C:\\Program Files\\MATLAB\\R2022a\\extern\\include\" /I \".\" -DMODEL=generate_mex   interface\\_coder_generate_mex.c /Fobuild\\win64\\_coder_generate_mex.obj",
     "file": "interface/_coder_generate_mex.c",
     "output": "build/win64/_coder_generate_mex.obj"
+  },
+  {
+    "directory": "C:\\Users\\mjuri\\Documents\\generator_tasks\\GKLS-master\\GKLS_pdf_C\\Software\\codegen\\mex\\generate",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"C:\\Users\\mjuri\\Documents\\generator_tasks\\GKLS-master\\GKLS_pdf_C\\Software\" /I \".\\interface\" /I \"C:\\Program Files\\MATLAB\\R2022a\\extern\\include\" /I \".\" -DMODEL=generate_mex   generate_emxutil.c /Fobuild\\win64\\generate_emxutil.obj",
+    "file": "generate_emxutil.c",
+    "output": "build/win64/generate_emxutil.obj"
   },
   {
     "directory": "C:\\Users\\mjuri\\Documents\\generator_tasks\\GKLS-master\\GKLS_pdf_C\\Software\\codegen\\mex\\generate",

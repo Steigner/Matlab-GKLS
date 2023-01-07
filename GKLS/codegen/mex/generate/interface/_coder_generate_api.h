@@ -21,6 +21,6 @@
 #include <string.h>
 
 /* Function Declarations */
-void generate_api(const mxArray *const prhs[6], const mxArray **plhs);
+void generate_api(const mxArray *const prhs[7], const mxArray **plhs);
 
 /* End of code generation (_coder_generate_api.h) */

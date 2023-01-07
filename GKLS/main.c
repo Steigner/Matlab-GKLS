@@ -29,6 +29,7 @@
 #include <malloc.h>
 #include <gkls.h>
 #include <rnd_gen.h>
+#include "main.h"
 
 /* Print an error message */
 void print_error_msg (int error_code)
@@ -75,7 +76,7 @@ void print_error_msg (int error_code)
 } /* print_error_msg() */
 
 
-int main(int dim, int num_min, float global_dist, float global_radius, int num_problems, int test_function)
+int main(int dim, int num_min, float global_dist, float global_radius, int num_problems, int test_function, double*x, int num)
 {
  unsigned int i, j; /* cycle parameters     */
  int error_code;    /* error codes variable */
@@ -86,7 +87,7 @@ int main(int dim, int num_min, float global_dist, float global_radius, int num_p
  double *g, **h;    /* gradient and hessian matrix */
  FILE *GKLS_info, *min_info, *fp, *fderiv; /* file pointers */
  char filename[50]; /* name of files */
-
+ 
 /*---------------------------------------------------------------------*/
 /*  First, generate a class (with default parameters) of the D-type    */
 /*  test functions and create the files with the function information  */
@@ -127,12 +128,11 @@ for (func_num=1; func_num <= num_problems; func_num++)
   }
 
   /* Open files */
-
   /* File of the test function information */
   sprintf(filename,"data/func_info/test%03d.txt",func_num);
   if ((GKLS_info=fopen(filename,"wt")) == NULL) return (-1);
 
-  if (GKLS_dim == 2) {
+  // if (GKLS_dim == 2) {
 
 	/* File of points */
 	sprintf(filename,"data/points/points%03d",func_num);
@@ -142,11 +142,11 @@ for (func_num=1; func_num <= num_problems; func_num++)
     sprintf(filename,"data/local_minimizers/lmin%03d",func_num);
  	if ((min_info=fopen(filename,"wt")) == NULL) return (-1);
 
-  }
+  //}
 
-  printf("\nGenerating the function number %d\n", func_num);
+  //printf("\nGenerating the function number %d\n", func_num);
 
-  fprintf(GKLS_info,"D-type function number %d", func_num);
+  fprintf(GKLS_info,"Type function number %d", func_num);
   fprintf(GKLS_info,"\nof the class with the following parameters:");
   fprintf(GKLS_info,"\n    problem dimension      = %u;",GKLS_dim);
   fprintf(GKLS_info,"\n    number of local minima = %u;",GKLS_num_minima);
@@ -163,7 +163,6 @@ for (func_num=1; func_num <= num_problems; func_num++)
     fprintf(GKLS_info,") = %7.3f;  ",GKLS_minima.f[i]);
 	fprintf(GKLS_info,"rho[%u] = %7.3f.\n", i+1, GKLS_minima.rho[i]);
   }
-
 
   /* Information about global minimizers */
   if (GKLS_glob.gm_index == 0)
@@ -184,15 +183,40 @@ for (func_num=1; func_num <= num_problems; func_num++)
 	}
   }
 
-  if (GKLS_dim == 2) {
+  //if (GKLS_dim == 2) {
     /* Get the files of the local minimizers points */
     for (i=0; i<GKLS_num_minima; i++) {
-     for (j=0; j<GKLS_dim; j++)
+      for (j=0; j<GKLS_dim; j++)
       fprintf(min_info,"%f ",GKLS_minima.local_min[i][j]);
-	 fprintf(min_info,"%f\n",GKLS_minima.f[i]);
-	}
+	    fprintf(min_info,"%f\n",GKLS_minima.f[i]);
+	  }
 
-  /* Function evaluating in the grid 100x100 */
+    // Function evaluating base on input
+    for(j = 0; j < num * dim; j = j + dim){
+      for(i = 0; i < dim; i++){
+        xx[i] = x[j+i];
+        fprintf(fp, "%f ", xx[i]);
+      }
+      // switch for test function
+      switch( test_function ){
+        case 1:
+          z = GKLS_D_func(xx);
+          break;
+        case 2:
+          z = GKLS_ND_func(xx);
+          break;
+        case 3:
+          z = GKLS_D2_func(xx);
+          break;
+        default:
+          z = GKLS_D_func(xx);
+      }
+      // print to ./points file
+      fprintf(fp, "%f ", z);
+      fprintf(fp, "\n");
+    }
+    
+  /* Function evaluating in the grid 100x100 
   for (dx1=GKLS_domain_left[0]; dx1<=GKLS_domain_right[0]+GKLS_PRECISION;
        dx1+=(GKLS_domain_right[0] - GKLS_domain_left[0])/100.0)
 	for (dx2=GKLS_domain_left[1]; dx2<=GKLS_domain_right[1]+GKLS_PRECISION;
@@ -213,19 +237,23 @@ for (func_num=1; func_num <= num_problems; func_num++)
         default:
           z=GKLS_D_func(xx);
       }
+  */
       /* z=GKLS_D_func(xx);  -- for D-type test function /*
 	    /* z=GKLS_ND_func(xx); -- for ND-type test function */
       /* z=GKLS_D2_func(xx); -- for D2-type test function */
-	  if (z>=GKLS_MAX_VALUE-1000.0) /* An error: do something */;
+	  /*
+    if (z>=GKLS_MAX_VALUE-1000.0); // An error: do something
 	  else
 	    fprintf(fp,"%f %f %f\n", dx1, dx2, z);
     }
-  } /* Creating files for two-dimensional functions */
+    */
+  // } /* Creating files for two-dimensional functions */
 
   /* Close files */
-  if (GKLS_dim == 2) {
+  // if (GKLS_dim == 2) {
 	 fclose(fp); fclose(min_info);
-  }
+  
+  // }
   fclose(GKLS_info);
   /* Deallocate memory */
   GKLS_free();
@@ -334,7 +362,6 @@ if ( (xx=(double *)malloc((size_t)GKLS_dim*sizeof(double))) == NULL)
 
  /* Deallocate memory of the vector xx of feasible point */
  free(xx);
-
 
  /* Deallocate the boundary vectors */
  GKLS_domain_free();

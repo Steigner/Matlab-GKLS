@@ -19,7 +19,7 @@
 
 /* Function Definitions */
 void generate_mexFunction(int32_T nlhs, mxArray *plhs[1], int32_T nrhs,
-                          const mxArray *prhs[6])
+                          const mxArray *prhs[7])
 {
   emlrtStack st = {
       NULL, /* site */
@@ -29,8 +29,8 @@ void generate_mexFunction(int32_T nlhs, mxArray *plhs[1], int32_T nrhs,
   const mxArray *outputs;
   st.tls = emlrtRootTLSGlobal;
   /* Check for proper number of arguments. */
-  if (nrhs != 6) {
-    emlrtErrMsgIdAndTxt(&st, "EMLRT:runTime:WrongNumberOfInputs", 5, 12, 6, 4,
+  if (nrhs != 7) {
+    emlrtErrMsgIdAndTxt(&st, "EMLRT:runTime:WrongNumberOfInputs", 5, 12, 7, 4,
                         8, "generate");
   }
   if (nlhs > 1) {
